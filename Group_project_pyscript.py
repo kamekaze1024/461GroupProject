@@ -140,7 +140,7 @@ if __name__ == "__main__":
             Delete(menu_for_tables(), c) 
             conn.commit()
         elif user_choice.upper() == 'E':
-            statement = input("Enter a sql statement: ")
+            statement = input("Enter a SQL statement: ")
             SQL_statement(statement, c)
             conn.commit()
     conn.close()
