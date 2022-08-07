@@ -128,7 +128,7 @@ if __name__ == "__main__":
     user_choice = ""
 
     while(user_choice.upper() != 'Q'):
-        user_choice = input("Select I: for insert D: for delete S: for select " + 
+        user_choice = input("Enter I: for insert D: for delete S: for select " + 
                             "E: to enter SQL statement Q: to quit: ")
         if user_choice.upper() == 'I':
             Insert(menu_for_tables(), c)
