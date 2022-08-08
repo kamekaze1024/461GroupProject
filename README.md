@@ -1,6 +1,6 @@
 # 461GroupProject
 ![ER Diagram](ER_Diagram.jpg)
-### Note: Agency address is a composite attribute
+### Note: Agency_Address is a composite attribute
 ## Relationship Explanations
 ### Contains
 All agencies are contained in an office (1)  
