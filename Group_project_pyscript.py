@@ -1,7 +1,26 @@
+# File: Group_project_pyscript.py
+# Authors: Sabila Bernard
+#          Obinna Ezejiofor
+#          Talha Hussain
+#          Raj Karsalia
+#          Quinn Mood
+#          Sneha Philip
+#          Nicholas Stommel
+#          Ulfina Wakjira
+#          Scott Witschey
+# Date: 8/8/2022
+# Section: 01
+# Description: python sqlite3 application that accesses the
+#              SOAP database and perform insertion, deletion, and
+#              selection operations.
+
 from msilib.schema import Error
 import sqlite3
 from datetime import datetime
 
+# menu_for_tables() displays a menu to interact with the databse
+# Parameters:       None
+# Return:           None
 def menu_for_tables():
     print("Choose from the tables below:\n")
     print("A) Agency\n")
@@ -16,10 +35,17 @@ def menu_for_tables():
     elif user_choice.upper() == "C":
         return "Rental Agreement"
 
+# convert_to_date(dt_str) converts a string to a date
+# Parameters: dt_str:     a date stored as a string
+# Return:                 a date formatted as a date
 def convert_to_date(dt_str):
     date = datetime.strptime(str(dt_str), "%Y-%m-%d").date()
     return date
 
+# Insert(table, cursor) inserts into a table
+# Parameters:           table: the selected table
+#                       cursor: object that helps execute query by fetching records from database
+# Return:               None
 def Insert(table,cursor):
     print(table)
     if table == "Agency":
@@ -56,8 +82,11 @@ def Insert(table,cursor):
             cursor.execute("insert into Rental_Agreement values(?,?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
             print("error occured: ", e)
-     #TODO: Not really sure how to implement this for the join tables  
 
+# Delete(table, cursor) deletes an entry from a table
+# Parameters:           table: the selected table
+#                       cursor: object that helps execute query by fetching records from database
+# Return:               None
 def Delete(table,cursor):
     if table == "Agency":
         user_choice = 1
@@ -99,8 +128,11 @@ def Delete(table,cursor):
             cursor.execute('delete from Rental_Agreement where Agreement_ID =(?)', [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
             print("error occured: ", e)
-    #TODO: Not really sure how to implement this for the join tables   
 
+# Select(table, cursor) selects an entry from a table
+# Parameters:           table: the selected table
+#                       cursor: object that helps execute query by fetching records from database
+# Return:               None
 def Select(table,cursor):
     if table == "Agency":
         for item in cursor.execute("select * from Agency"):
@@ -111,8 +143,11 @@ def Select(table,cursor):
     elif table == "Rental Agreement":
         for item in cursor.execute("select * from Rental_Agreement"):
             print(item)
-    #TODO: Not really sure how to implement this for the join tables
 
+# SQL_statement(statement, cursor) executes a sql statement on the database
+# Parameters:                      statement: the sql statement to be executed
+#                                  cursor: object that helps execute query by fetching records from database
+# Return:                          None
 def SQL_statement(statement,cursor):
     try:
         cursor.execute(statement)
