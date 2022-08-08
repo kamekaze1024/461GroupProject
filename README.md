@@ -3,10 +3,10 @@
 ### Note: Agency address is a composite attribute
 ## Relationship Explanations
 ### Contains
-All agencies are contained in an office (1) \n
+All agencies are contained in an office (1)  
 All offices contain at least one agency (1 or more)
 ### Manages
-Offices can manage multiple rental agreements (0 or more) \n
+Offices can manage multiple rental agreements (0 or more) <br>
 Rental agreements are managed by exactly one office (1)
 ### Agrees
 Agencies can agree on multiple rental agreements (0 or more) \n
