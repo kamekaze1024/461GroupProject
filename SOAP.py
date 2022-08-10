@@ -13,8 +13,6 @@
 # Description: python sqlite3 application that accesses the
 #              SOAP database and perform insertion, deletion, and
 #              selection operations.
-
-from msilib.schema import Error
 import sqlite3
 from datetime import datetime
 
