@@ -28,7 +28,6 @@ def menu_for_tables():
     print("C) Rental Agreement\n")
     user_choice = input("Choice: ")
     if user_choice.upper() == "A":
-        print("you choose agency")
         return "Agency"
     elif user_choice.upper() == "B":
         return "Office"
@@ -158,7 +157,7 @@ def SQL_statement(statement,cursor):
         print("error occured: ", e)
 
 if __name__ == "__main__":
-    conn = sqlite3.connect("Group_Project.db")
+    conn = sqlite3.connect("SOAP.db")
     c = conn.cursor()
     user_choice = ""
 

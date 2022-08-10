@@ -1,5 +1,5 @@
 --To create database and see error output, use the following command in the terminal:
---sqlite3 "Group_Project.db" ".read 'Group_Project_DB.sql'"
+--sqlite3 "SOAP.db" ".read 'SOAP.sql'"
 
 PRAGMA foreign_keys = ON;
 
