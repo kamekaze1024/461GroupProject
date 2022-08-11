@@ -18,7 +18,7 @@ from datetime import datetime
 
 # menu_for_tables() displays a menu to interact with the databse
 # Parameters:       None
-# Return:           None
+# Return:           table name string
 def menu_for_tables():
     print("Choose from the tables below:")
     print("A) Agency")
@@ -53,7 +53,7 @@ def convert_to_date(dt_str):
     return date
 
 # insert(table, cursor) inserts into a table
-# Parameters:           table: the selected table
+# Parameters:           table: the selected table name string
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
 def insert(table, cursor):
@@ -101,7 +101,7 @@ def insert(table, cursor):
             print("Error occurred: ", e)
 
 # delete(table, cursor) deletes an entry from a table
-# Parameters:           table: the selected table
+# Parameters:           table: the selected table name string
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
 def delete(table, cursor):
@@ -160,7 +160,7 @@ def delete(table, cursor):
             print("Error occurred: ", e)
 
 # select(table, cursor) selects an entry from a table
-# Parameters:           table: the selected table
+# Parameters:           table: the selected table name string
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
 def select(table, cursor):
@@ -171,7 +171,7 @@ def select(table, cursor):
         print("Error occurred: ", e)
 
 # sql_statement(statement, cursor) executes a sql statement on the database
-# Parameters:                      statement: the sql statement to be executed
+# Parameters:                      statement: the sql statement string to be executed
 #                                  cursor: object that helps execute query by fetching records from database
 # Return:                          None
 def sql_statement(statement, cursor):
