@@ -52,7 +52,7 @@ def convert_to_date(dt_str):
     date = datetime.strptime(str(dt_str), "%Y-%m-%d").date()
     return date
 
-# Insert(table, cursor) inserts into a table
+# insert(table, cursor) inserts into a table
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
@@ -100,7 +100,7 @@ def insert(table,cursor):
         except sqlite3.Error as e:
             print("Error occurred: ", e)
 
-# Delete(table, cursor) deletes an entry from a table
+# delete(table, cursor) deletes an entry from a table
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
@@ -159,7 +159,7 @@ def delete(table,cursor):
         except sqlite3.Error as e:
             print("Error occurred: ", e)
 
-# Select(table, cursor) selects an entry from a table
+# select(table, cursor) selects an entry from a table
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
@@ -170,7 +170,7 @@ def select(table,cursor):
     except sqlite3.Error as e:
         print("Error occurred: ", e)
 
-# SQL_statement(statement, cursor) executes a sql statement on the database
+# sql_statement(statement, cursor) executes a sql statement on the database
 # Parameters:                      statement: the sql statement to be executed
 #                                  cursor: object that helps execute query by fetching records from database
 # Return:                          None
