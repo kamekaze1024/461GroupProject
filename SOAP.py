@@ -193,12 +193,12 @@ if __name__ == "__main__":
         if user_choice == "I":
             insert(menu_for_tables(), cursor)
             conn.commit()
-        elif user_choice == "S":
-            select(menu_for_tables(), cursor)
-            #No need to call conn.commit() because this function doesn't alter database.
         elif user_choice == "D":
             delete(menu_for_tables(), cursor) 
             conn.commit()
+        elif user_choice == "S":
+            select(menu_for_tables(), cursor)
+            #No need to call conn.commit() because this function doesn't alter database.
         elif user_choice == "E":
             statement = input("Enter a SQL statement: ")
             sql_statement(statement, cursor)
