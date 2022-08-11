@@ -131,7 +131,7 @@ def delete(table, cursor):
             cursor.execute("delete from Office where Office_Name =(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
             print("Error occurred: ", e)
-    elif table == "Rental Agreement":
+    elif table == "Rental_Agreement":
         user_choice = 1
         row_to_delete = []
         for item in cursor.execute("select * from Rental_Agreement"):
@@ -185,7 +185,7 @@ def sql_statement(statement, cursor):
 
 if __name__ == "__main__":
     connection = sqlite3.connect("SOAP.db")
-    connection.execute("PRAGMA foreign_keys = 1")
+    connection.execute("PRAGMA foreign_keys = ON")
     cursor = connection.cursor()
     while(True):
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
