@@ -63,7 +63,7 @@ def Insert(table,cursor):
          try:
             cursor.execute("insert into Agency values (?,?,?,?,?,?)", row_to_insert)
          except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
     if table == "Office":
         Office_Name = input("Enter the name of the office: ")
         City = input("Enter the city of the office: ")
@@ -73,7 +73,7 @@ def Insert(table,cursor):
         try:
             cursor.execute("insert into Office values(?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
     if table == "Rental Agreement":
         Agreement_ID = int(input("Enter agreement id: "))
         Office_Name = input("Enter the office name: ")
@@ -84,7 +84,7 @@ def Insert(table,cursor):
         try:
             cursor.execute("insert into Rental_Agreement values(?,?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
     if table == "Agrees":
         Agreement_ID = int(input("Enter agreement id: "))
         Agency_ID   = int(input("Enter the agency id: "))
@@ -92,7 +92,7 @@ def Insert(table,cursor):
         try:
             cursor.execute("insert into Agrees values(?,?)", row_to_insert)
         except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
 
 # Delete(table, cursor) deletes an entry from a table
 # Parameters:           table: the selected table
@@ -111,7 +111,7 @@ def Delete(table,cursor):
         try:
             cursor.execute("delete from Agency where Agency_ID=(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
-             print("error occurred: ", e)           
+             print("Error occurred: ", e)           
     elif table == "Office":
         user_choice = 1
         row_to_delete = []
@@ -124,7 +124,7 @@ def Delete(table,cursor):
         try:
             cursor.execute("delete from Office where Office_Name =(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
     elif table == "Rental Agreement":
         user_choice = 1
         row_to_delete = []
@@ -137,7 +137,7 @@ def Delete(table,cursor):
         try:
             cursor.execute("delete from Rental_Agreement where Agreement_ID =(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
     elif table == "Agrees":
         user_choice = 1
         row_to_delete = []
@@ -151,7 +151,7 @@ def Delete(table,cursor):
             cursor.execute("delete from Agrees where Agreement_ID =(?) and Agency_ID = (?)", 
                 [row_to_delete[user_choice - 1][0], row_to_delete[user_choice - 1][1]])
         except sqlite3.Error as e:
-            print("error occurred: ", e)
+            print("Error occurred: ", e)
 
 # Select(table, cursor) selects an entry from a table
 # Parameters:           table: the selected table
@@ -162,7 +162,7 @@ def Select(table,cursor):
         for item in cursor.execute("select * from " + table):
             print(item)
     except sqlite3.Error as e:
-        print("error occurred: ", e)
+        print("Error occurred: ", e)
 
 # SQL_statement(statement, cursor) executes a sql statement on the database
 # Parameters:                      statement: the sql statement to be executed
@@ -175,7 +175,7 @@ def SQL_statement(statement,cursor):
         for row in rows:
             print(row)
     except sqlite3.Error as e:
-        print("error occurred: ", e)
+        print("Error occurred: ", e)
 
 if __name__ == "__main__":
     conn = sqlite3.connect("SOAP.db")
@@ -184,20 +184,20 @@ if __name__ == "__main__":
     while(True):
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
                             "E: to enter SQL statement Q: to quit: ").upper()
-        if user_choice == 'I':
+        if user_choice == "I":
             Insert(menu_for_tables(), c)
             conn.commit()
-        elif user_choice == 'S':
+        elif user_choice == "S":
             Select(menu_for_tables(), c)
             conn.commit()
-        elif user_choice == 'D':
+        elif user_choice == "D":
             Delete(menu_for_tables(), c) 
             conn.commit()
-        elif user_choice == 'E':
+        elif user_choice == "E":
             statement = input("Enter a SQL statement: ")
             SQL_statement(statement, c)
             conn.commit()
-        elif user_choice == 'Q':
+        elif user_choice == "Q":
             print("Quitting...")
             break
         else:
