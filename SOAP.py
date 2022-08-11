@@ -25,19 +25,26 @@ def menu_for_tables():
     print("B) Office")
     print("C) Rental Agreement")
     print("D) Agrees")
+    ret_val = ""
     while(True):
         user_choice = input("Choice: ").upper()
         if user_choice == "A":
-            return "Agency"
+            ret_val = "Agency"
+            break
         elif user_choice == "B":
-            return "Office"
+            ret_val = "Office"
+            break
         elif user_choice == "C":
-            return "Rental_Agreement"
+            ret_val = "Rental_Agreement"
+            break
         elif user_choice == "D":
-            return "Agrees"
+            ret_val = "Agrees"
+            break
         else:
             print("Invalid selection, please enter A, B, C, or D.")
-        
+    print("You chose the " + ret_val + " table.")
+    return ret_val
+    
 # convert_to_date(dt_str) converts a string to a date
 # Parameters: dt_str:     a date stored as a string
 # Return:                 a date formatted as a date
@@ -49,8 +56,7 @@ def convert_to_date(dt_str):
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
-def Insert(table,cursor):
-    print(table)
+def insert(table,cursor):
     if table == "Agency":
          agency_id   = int(input("Enter the agency id: "))
          agency_name = input("Enter the agency name: ")
@@ -98,7 +104,7 @@ def Insert(table,cursor):
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
-def Delete(table,cursor):
+def delete(table,cursor):
     if table == "Agency":
         user_choice = 1
         row_to_delete = []
@@ -157,7 +163,7 @@ def Delete(table,cursor):
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
-def Select(table,cursor):
+def select(table,cursor):
     try:
         for item in cursor.execute("select * from " + table):
             print(item)
@@ -168,7 +174,7 @@ def Select(table,cursor):
 # Parameters:                      statement: the sql statement to be executed
 #                                  cursor: object that helps execute query by fetching records from database
 # Return:                          None
-def SQL_statement(statement,cursor):
+def sql_statement(statement,cursor):
     try:
         cursor.execute(statement)
         rows = cursor.fetchall()
@@ -185,17 +191,17 @@ if __name__ == "__main__":
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
                             "E: to enter SQL statement Q: to quit: ").upper()
         if user_choice == "I":
-            Insert(menu_for_tables(), c)
+            insert(menu_for_tables(), c)
             conn.commit()
         elif user_choice == "S":
-            Select(menu_for_tables(), c)
+            select(menu_for_tables(), c)
             conn.commit()
         elif user_choice == "D":
-            Delete(menu_for_tables(), c) 
+            delete(menu_for_tables(), c) 
             conn.commit()
         elif user_choice == "E":
             statement = input("Enter a SQL statement: ")
-            SQL_statement(statement, c)
+            sql_statement(statement, c)
             conn.commit()
         elif user_choice == "Q":
             print("Quitting...")
