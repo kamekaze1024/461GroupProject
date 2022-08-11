@@ -185,23 +185,23 @@ def sql_statement(statement, cursor):
 
 if __name__ == "__main__":
     conn = sqlite3.connect("SOAP.db")
-    c = conn.cursor()
+    cursor = conn.cursor()
 
     while(True):
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
                             "E: to enter SQL statement Q: to quit: ").upper()
         if user_choice == "I":
-            insert(menu_for_tables(), c)
+            insert(menu_for_tables(), cursor)
             conn.commit()
         elif user_choice == "S":
-            select(menu_for_tables(), c)
-            conn.commit()
+            select(menu_for_tables(), cursor)
+            #No need to call conn.commit() because this function doesn't alter database.
         elif user_choice == "D":
-            delete(menu_for_tables(), c) 
+            delete(menu_for_tables(), cursor) 
             conn.commit()
         elif user_choice == "E":
             statement = input("Enter a SQL statement: ")
-            sql_statement(statement, c)
+            sql_statement(statement, cursor)
             conn.commit()
         elif user_choice == "Q":
             print("Quitting...")
