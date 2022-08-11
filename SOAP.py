@@ -184,9 +184,8 @@ def sql_statement(statement, cursor):
         print("Error occurred: ", e)
 
 if __name__ == "__main__":
-    conn = sqlite3.connect("SOAP.db")
-    cursor = conn.cursor()
-
+    connection = sqlite3.connect("SOAP.db")
+    cursor = connection.cursor()
     while(True):
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
                             "E: to enter SQL statement Q: to quit: ").upper()
@@ -207,6 +206,5 @@ if __name__ == "__main__":
             print("Quitting...")
             break
         else:
-            print("Invalid choice, please select I, D, S, E, or Q.")
-        
-    conn.close()
+            print("Invalid choice, please select I, D, S, E, or Q.")       
+    connection.close()
