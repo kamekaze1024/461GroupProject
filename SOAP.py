@@ -56,7 +56,7 @@ def convert_to_date(dt_str):
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
-def insert(table,cursor):
+def insert(table, cursor):
     if table == "Agency":
          agency_id   = int(input("Enter the agency id: "))
          agency_name = input("Enter the agency name: ")
@@ -104,7 +104,7 @@ def insert(table,cursor):
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
-def delete(table,cursor):
+def delete(table, cursor):
     if table == "Agency":
         user_choice = 1
         row_to_delete = []
@@ -163,7 +163,7 @@ def delete(table,cursor):
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
-def select(table,cursor):
+def select(table, cursor):
     try:
         for item in cursor.execute("select * from " + table):
             print(item)
@@ -174,7 +174,7 @@ def select(table,cursor):
 # Parameters:                      statement: the sql statement to be executed
 #                                  cursor: object that helps execute query by fetching records from database
 # Return:                          None
-def sql_statement(statement,cursor):
+def sql_statement(statement, cursor):
     try:
         cursor.execute(statement)
         rows = cursor.fetchall()
