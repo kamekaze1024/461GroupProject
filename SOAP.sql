@@ -77,15 +77,15 @@ INSERT INTO Agency VALUES(9, 'Environmental Protection Agency',
 INSERT INTO Agency VALUES(10, 'National Security Agency', 
 	'67392 Security Dr.', 'Charlestown', 'WV', '765-789-0981');
 
-INSERT INTO Rental_Agreement VALUES(1, 'New England Regional Office', 10000, 
+INSERT INTO Rental_Agreement VALUES(1, 'New England Regional Office', 10000.50, 
 	DATE('2020-01-01'), DATE('2022-06-01'));
-INSERT INTO Rental_Agreement VALUES(2, 'Northeast & Caribbean Regional Office', 15000,
+INSERT INTO Rental_Agreement VALUES(2, 'Northeast & Caribbean Regional Office', 15000.25,
 	DATE('2019-01-01'), DATE('2022-12-01'));
-INSERT INTO Rental_Agreement VALUES(3, 'Mid-Atlantic Regional Office', 20000,
+INSERT INTO Rental_Agreement VALUES(3, 'Mid-Atlantic Regional Office', 20000.00,
 	DATE('2021-01-01'), DATE('2023-06-01'));
-INSERT INTO Rental_Agreement VALUES(4, 'Southeast Sunbelt Regional Office', 30000,
+INSERT INTO Rental_Agreement VALUES(4, 'Southeast Sunbelt Regional Office', 30000.75,
 	DATE('2021-06-01'), DATE('2023-06-01'));
-INSERT INTO Rental_Agreement VALUES(5, 'Great Lakes Regional Office', 25000,
+INSERT INTO Rental_Agreement VALUES(5, 'Great Lakes Regional Office', 25000.50,
 	DATE('2020-01-01'), DATE('2024-01-01'));
 
 INSERT INTO Agrees VALUES(1, 1);
