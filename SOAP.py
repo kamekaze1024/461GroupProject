@@ -21,17 +21,23 @@ from datetime import datetime
 # Return:           None
 def menu_for_tables():
     print("Choose from the tables below:\n")
-    print("A) Agency\n")
-    print("B) Office\n")
-    print("C) Rental Agreement\n")
-    user_choice = input("Choice: ")
-    if user_choice.upper() == "A":
-        return "Agency"
-    elif user_choice.upper() == "B":
-        return "Office"
-    elif user_choice.upper() == "C":
-        return "Rental Agreement"
-
+    print("A) Agency")
+    print("B) Office")
+    print("C) Rental Agreement")
+    print("D) Agrees")
+    while(True):
+        user_choice = input("Choice: ")
+        if user_choice.upper() == "A":
+            return "Agency"
+        elif user_choice.upper() == "B":
+            return "Office"
+        elif user_choice.upper() == "C":
+            return "Rental_Agreement"
+        elif user_choice.upper() == "D":
+            return "Agrees"
+        else:
+            print("Invalid selection, please enter A, B, C, or D.")
+        
 # convert_to_date(dt_str) converts a string to a date
 # Parameters: dt_str:     a date stored as a string
 # Return:                 a date formatted as a date
@@ -46,39 +52,47 @@ def convert_to_date(dt_str):
 def Insert(table,cursor):
     print(table)
     if table == "Agency":
-         Agency_ID   = int(input("Enter the Agency Id: "))
-         Office_Name = input("Enter the Office name: ")
-         Agency_Name = input("Enter the Agency name: ")
-         Street = input("Enter the street of the address: ") 
-         City = input("Enter the city of the Agency: ")
-         State  = input("Enter the State of the Agency: ")
-         Phone_Number= input("Enter the Phone number of the Agency: ")
+         Agency_ID   = int(input("Enter the agency id: "))
+         Agency_Name = input("Enter the agency name: ")
+         Street = input("Enter the street address of the agency: ") 
+         City = input("Enter the city of the agency: ")
+         State  = input("Enter the State of the agency: ")
+         Phone_Number= input("Enter the Phone number of the agency: ")
          # This is the tuple that is going to be inserted into the table
-         row_to_insert = (Agency_ID, Office_Name, Agency_Name, Street, City, State, Phone_Number)
+         row_to_insert = (Agency_ID, Agency_Name, Street, City, State, Phone_Number)
          try:
-            cursor.execute("insert into Agency values (?,?,?,?,?,?,?)", row_to_insert)
+            cursor.execute("insert into Agency values (?,?,?,?,?,?)", row_to_insert)
          except sqlite3.Error as e:
-            print("error occured: ", e)
+            print("error occurred: ", e)
     if table == "Office":
         Office_Name = input("Enter the name of the office: ")
-        Office_City = input("Enter the city of the office: ")
+        City = input("Enter the city of the office: ")
+        State = input("Enter the state of the office: ")
         Square_Footage = int(input("Enter the square footage of the office: "))
-        row_to_insert = (Office_Name, Office_City, Square_Footage)
+        row_to_insert = (Office_Name, City, State, Square_Footage)
         try:
-            cursor.execute("insert into Office values(?,?,?)",row_to_insert)
+            cursor.execute("insert into Office values(?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
-            print("error occured: ", e)
+            print("error occurred: ", e)
     if table == "Rental Agreement":
         Agreement_ID = int(input("Enter agreement id: "))
-        Off_name = input("Enter the office name: ")
-        Rent_amount = float(input("Enter rent amount: "))
-        Begin_date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
-        End_date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
-        row_to_insert = (Agreement_ID, Off_name, Rent_amount, Begin_date, End_date)
+        Office_Name = input("Enter the office name: ")
+        Rent_Amount = float(input("Enter rent amount: "))
+        Begin_Date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
+        End_Date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
+        row_to_insert = (Agreement_ID, Office_Name, Rent_Amount, Begin_Date, End_Date)
         try:
             cursor.execute("insert into Rental_Agreement values(?,?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
-            print("error occured: ", e)
+            print("error occurred: ", e)
+    if table == "Agrees":
+        Agreement_ID = int(input("Enter agreement id: "))
+        Agency_ID   = int(input("Enter the agency id: "))
+        row_to_insert = (Agreement_ID, Agency_ID)
+        try:
+            cursor.execute("insert into Agrees values(?,?)", row_to_insert)
+        except sqlite3.Error as e:
+            print("error occurred: ", e)
 
 # Delete(table, cursor) deletes an entry from a table
 # Parameters:           table: the selected table
@@ -98,7 +112,7 @@ def Delete(table,cursor):
         try:
             cursor.execute('delete from Agency where Agency_ID=(?)', [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
-             print("error occured: ", e)           
+             print("error occurred: ", e)           
     elif table == "Office":
         user_choice = 1
         row_to_delete = []
@@ -111,7 +125,7 @@ def Delete(table,cursor):
         try:
             cursor.execute('delete from Office where Office_Name =(?)', [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
-            print("error occured: ", e)
+            print("error occurred: ", e)
     elif table == "Rental Agreement":
         user_choice = 1
         row_to_delete = []
@@ -124,22 +138,31 @@ def Delete(table,cursor):
         try:
             cursor.execute('delete from Rental_Agreement where Agreement_ID =(?)', [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
-            print("error occured: ", e)
+            print("error occurred: ", e)
+    elif table == "Agrees":
+        user_choice = 1
+        row_to_delete = []
+        for item in cursor.execute("select * from Agrees"):
+            print("%d) "%user_choice, end="")
+            print(item)
+            user_choice += 1
+            row_to_delete.append(item[0])
+        user_choice = int(input("Pick a row to delete: "))
+        try:
+            cursor.execute('delete from Agrees where Agreement_ID =(?)', [row_to_delete[user_choice - 1]])
+        except sqlite3.Error as e:
+            print("error occurred: ", e)
 
 # Select(table, cursor) selects an entry from a table
 # Parameters:           table: the selected table
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
 def Select(table,cursor):
-    if table == "Agency":
-        for item in cursor.execute("select * from Agency"):
+    try:
+        for item in cursor.execute("select * from " + table):
             print(item)
-    elif table == "Office":
-        for item in cursor.execute("select * from Office"):
-            print(item)
-    elif table == "Rental Agreement":
-        for item in cursor.execute("select * from Rental_Agreement"):
-            print(item)
+    except sqlite3.Error as e:
+        print("error occurred: ", e)
 
 # SQL_statement(statement, cursor) executes a sql statement on the database
 # Parameters:                      statement: the sql statement to be executed
@@ -152,7 +175,7 @@ def SQL_statement(statement,cursor):
         for row in rows:
             print(row)
     except sqlite3.Error as e:
-        print("error occured: ", e)
+        print("error occurred: ", e)
 
 if __name__ == "__main__":
     conn = sqlite3.connect("SOAP.db")
@@ -175,4 +198,7 @@ if __name__ == "__main__":
             statement = input("Enter a SQL statement: ")
             SQL_statement(statement, c)
             conn.commit()
+        else:
+            print("Invalid choice, please select I, S, D, E, or Q.")
+        
     conn.close()
