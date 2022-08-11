@@ -84,13 +84,20 @@ INSERT INTO Rental_Agreement VALUES(3, 'Mid-Atlantic Regional Office', 20000,
 	DATE('2021-01-01'), DATE('2023-06-01'));
 INSERT INTO Rental_Agreement VALUES(4, 'Southeast Sunbelt Regional Office', 30000,
 	DATE('2021-06-01'), DATE('2023-06-01'));
+INSERT INTO Rental_Agreement VALUES(5, 'Great Lakes Regional Office', 25000,
+	DATE('2020-01-01'), DATE('2024-01-01'));
+
 INSERT INTO Agrees VALUES(1, 1);
 INSERT INTO Agrees VALUES(1, 2);
+INSERT INTO Agrees VALUES(1, 9);
 INSERT INTO Agrees VALUES(2, 1);
 INSERT INTO Agrees VALUES(2, 3);
+INSERT INTO Agrees VALUES(2, 8);
 INSERT INTO Agrees VALUES(3, 4);
 INSERT INTO Agrees VALUES(4, 5);
-
+INSERT INTO Agrees VALUES(4, 7);
+INSERT INTO Agrees VALUES(5, 5);
+INSERT INTO Agrees VALUES(5, 6);
 
 
 
