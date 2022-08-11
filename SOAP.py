@@ -185,6 +185,7 @@ def sql_statement(statement, cursor):
 
 if __name__ == "__main__":
     connection = sqlite3.connect("SOAP.db")
+    connection.execute("PRAGMA foreign_keys = 1")
     cursor = connection.cursor()
     while(True):
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
