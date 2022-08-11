@@ -108,7 +108,6 @@ def Delete(table,cursor):
             user_choice += 1
             row_to_delete.append(item[0])
         user_choice = int(input("Pick a row to delete: "))
-        print(row_to_delete[user_choice - 1])
         try:
             cursor.execute('delete from Agency where Agency_ID=(?)', [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
@@ -146,10 +145,11 @@ def Delete(table,cursor):
             print("%d) "%user_choice, end="")
             print(item)
             user_choice += 1
-            row_to_delete.append(item[0])
+            row_to_delete.append([item[0], item[1]])
         user_choice = int(input("Pick a row to delete: "))
         try:
-            cursor.execute('delete from Agrees where Agreement_ID =(?)', [row_to_delete[user_choice - 1]])
+            cursor.execute('delete from Agrees where Agreement_ID =(?) and Agency_ID = (?)', 
+                [row_to_delete[user_choice - 1][0], row_to_delete[user_choice - 1][1]])
         except sqlite3.Error as e:
             print("error occurred: ", e)
 
