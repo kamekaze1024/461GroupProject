@@ -20,7 +20,7 @@ from datetime import datetime
 # Parameters:       None
 # Return:           None
 def menu_for_tables():
-    print("Choose from the tables below:\n")
+    print("Choose from the tables below:")
     print("A) Agency")
     print("B) Office")
     print("C) Rental Agreement")
@@ -180,24 +180,26 @@ def SQL_statement(statement,cursor):
 if __name__ == "__main__":
     conn = sqlite3.connect("SOAP.db")
     c = conn.cursor()
-    user_choice = ""
 
-    while(user_choice.upper() != 'Q'):
+    while(True):
         user_choice = input("Enter I: for insert D: for delete S: for select " + 
-                            "E: to enter SQL statement Q: to quit: ")
-        if user_choice.upper() == 'I':
+                            "E: to enter SQL statement Q: to quit: ").upper()
+        if user_choice == 'I':
             Insert(menu_for_tables(), c)
             conn.commit()
-        elif user_choice.upper() == 'S':
+        elif user_choice == 'S':
             Select(menu_for_tables(), c)
             conn.commit()
-        elif user_choice.upper() == 'D':
+        elif user_choice == 'D':
             Delete(menu_for_tables(), c) 
             conn.commit()
-        elif user_choice.upper() == 'E':
+        elif user_choice == 'E':
             statement = input("Enter a SQL statement: ")
             SQL_statement(statement, c)
             conn.commit()
+        elif user_choice == 'Q':
+            print("Quitting...")
+            break
         else:
             print("Invalid choice, please select I, S, D, E, or Q.")
         
