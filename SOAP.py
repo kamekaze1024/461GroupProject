@@ -201,6 +201,6 @@ if __name__ == "__main__":
             print("Quitting...")
             break
         else:
-            print("Invalid choice, please select I, S, D, E, or Q.")
+            print("Invalid choice, please select I, D, S, E, or Q.")
         
     conn.close()
