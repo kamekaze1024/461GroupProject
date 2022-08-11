@@ -26,14 +26,14 @@ def menu_for_tables():
     print("C) Rental Agreement")
     print("D) Agrees")
     while(True):
-        user_choice = input("Choice: ")
-        if user_choice.upper() == "A":
+        user_choice = input("Choice: ").upper()
+        if user_choice == "A":
             return "Agency"
-        elif user_choice.upper() == "B":
+        elif user_choice == "B":
             return "Office"
-        elif user_choice.upper() == "C":
+        elif user_choice == "C":
             return "Rental_Agreement"
-        elif user_choice.upper() == "D":
+        elif user_choice == "D":
             return "Agrees"
         else:
             print("Invalid selection, please enter A, B, C, or D.")
@@ -52,43 +52,43 @@ def convert_to_date(dt_str):
 def Insert(table,cursor):
     print(table)
     if table == "Agency":
-         Agency_ID   = int(input("Enter the agency id: "))
-         Agency_Name = input("Enter the agency name: ")
-         Street = input("Enter the street address of the agency: ") 
-         City = input("Enter the city of the agency: ")
-         State  = input("Enter the State of the agency: ")
-         Phone_Number= input("Enter the Phone number of the agency: ")
+         agency_id   = int(input("Enter the agency id: "))
+         agency_name = input("Enter the agency name: ")
+         street = input("Enter the street address of the agency: ") 
+         city = input("Enter the city of the agency: ")
+         state  = input("Enter the State of the agency: ")
+         phone_number= input("Enter the Phone number of the agency: ")
          # This is the tuple that is going to be inserted into the table
-         row_to_insert = (Agency_ID, Agency_Name, Street, City, State, Phone_Number)
+         row_to_insert = (agency_id, agency_name, street, city, state, phone_number)
          try:
             cursor.execute("insert into Agency values (?,?,?,?,?,?)", row_to_insert)
          except sqlite3.Error as e:
             print("Error occurred: ", e)
     if table == "Office":
-        Office_Name = input("Enter the name of the office: ")
-        City = input("Enter the city of the office: ")
-        State = input("Enter the state of the office: ")
-        Square_Footage = int(input("Enter the square footage of the office: "))
-        row_to_insert = (Office_Name, City, State, Square_Footage)
+        office_name = input("Enter the name of the office: ")
+        city = input("Enter the city of the office: ")
+        state = input("Enter the state of the office: ")
+        square_footage = int(input("Enter the square footage of the office: "))
+        row_to_insert = (office_name, city, state, square_footage)
         try:
             cursor.execute("insert into Office values(?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     if table == "Rental Agreement":
-        Agreement_ID = int(input("Enter agreement id: "))
-        Office_Name = input("Enter the office name: ")
-        Rent_Amount = float(input("Enter rent amount: "))
-        Begin_Date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
-        End_Date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
-        row_to_insert = (Agreement_ID, Office_Name, Rent_Amount, Begin_Date, End_Date)
+        agreement_id = int(input("Enter agreement id: "))
+        office_name = input("Enter the office name: ")
+        rent_amount = float(input("Enter rent amount: "))
+        begin_date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
+        end_date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
+        row_to_insert = (agreement_id, office_name, rent_amount, begin_date, end_date)
         try:
             cursor.execute("insert into Rental_Agreement values(?,?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     if table == "Agrees":
-        Agreement_ID = int(input("Enter agreement id: "))
-        Agency_ID   = int(input("Enter the agency id: "))
-        row_to_insert = (Agreement_ID, Agency_ID)
+        agreement_id = int(input("Enter agreement id: "))
+        agency_id = int(input("Enter the agency id: "))
+        row_to_insert = (agreement_id, agency_id)
         try:
             cursor.execute("insert into Agrees values(?,?)", row_to_insert)
         except sqlite3.Error as e:
