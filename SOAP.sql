@@ -55,6 +55,7 @@ INSERT INTO Office VALUES('Rocky Mountain Regional Office', 'Denver', 'CO', 1500
 INSERT INTO Office VALUES('Pacific Rim Regional Office', 'San Francisco', 'CA', 20000);
 INSERT INTO Office VALUES('Northwest & Arctic Regional Office', 'Auburn', 'WA', 15000);
 INSERT INTO Office VALUES('National Capital Regional Headquarters', 'Washington', 'DC', 25000);
+
 INSERT INTO Agency VALUES(1, 'Internal Revenue Service', 
 	'12401 Tax St.', 'Houston', 'TX', '616-637-9827');
 INSERT INTO Agency VALUES(2, 'Food and Drug Administration', 
@@ -93,6 +94,7 @@ INSERT INTO Agrees VALUES(1, 9);
 INSERT INTO Agrees VALUES(2, 1);
 INSERT INTO Agrees VALUES(2, 3);
 INSERT INTO Agrees VALUES(2, 8);
+INSERT INTO Agrees VALUES(3, 2);
 INSERT INTO Agrees VALUES(3, 4);
 INSERT INTO Agrees VALUES(4, 5);
 INSERT INTO Agrees VALUES(4, 7);
