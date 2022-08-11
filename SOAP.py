@@ -11,8 +11,8 @@
 # Date: 8/8/2022
 # Section: 01
 # Description: python sqlite3 application that accesses the
-#              SOAP database and perform insertion, deletion, and
-#              selection operations.
+#              SOAP database and performs insertion, deletion, and
+#              selection operations as well as custom SQL statements.
 import sqlite3
 from datetime import datetime
 
