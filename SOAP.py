@@ -200,8 +200,8 @@ if __name__ == "__main__":
     connection.execute("PRAGMA foreign_keys = ON")
     cursor = connection.cursor()
     while(True):
-        user_choice = input("Enter I: for insert D: for delete S: for select " + 
-                            "E: to enter SQL statement Q: to quit: ").upper()
+        user_choice = input("Enter (I): for insert (D): for delete (S): for select " + 
+                            "(E): to enter SQL statement (Q): to quit: ").upper()
         if user_choice == "I":
             insert(menu_for_tables(), cursor)
             connection.commit()
@@ -219,5 +219,5 @@ if __name__ == "__main__":
             print("Quitting...")
             break
         else:
-            print("Invalid choice, please select I, D, S, E, or Q.")       
+            print("Invalid choice, please enter (I), (D), (S), (E), or (Q).")       
     connection.close()
