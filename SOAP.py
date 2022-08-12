@@ -141,82 +141,37 @@ def insert(table, cursor):
 #                       cursor: object that helps execute query by fetching records from database
 # Return:               None
 def delete(table, cursor):
+    user_choice = 1
+    row_to_delete = []
+    for item in cursor.execute("select * from " + table):
+        print("%d) "%user_choice, end="")
+        print(item)
+        user_choice += 1
+        row_to_delete.append([item[0], item[1]])
+    try:
+        user_choice = int(input("Pick a row to delete: "))
+    except ValueError:
+        print("Error: invalid type, enter an integer.")
+        return
+    if user_choice < 1 or user_choice > len(row_to_delete):
+        print("Error: Index out of range.")
+        return
     if table == "Agency":
-        user_choice = 1
-        row_to_delete = []
-        for item in cursor.execute("select * from Agency"):
-            print("%d) "%user_choice, end="")
-            print(item)
-            user_choice += 1
-            row_to_delete.append(item[0])
-        try:
-            user_choice = int(input("Pick a row to delete: "))
-        except ValueError:
-            print("Error: invalid type, enter an integer.")
-            return
-        if user_choice < 1 or user_choice > len(row_to_delete):
-            print("Error: Index out of range.")
-            return
         try:
             cursor.execute("delete from Agency where Agency_ID=(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
              print("Error occurred: ", e)           
     elif table == "Office":
-        user_choice = 1
-        row_to_delete = []
-        for item in cursor.execute("select * from Office"):
-            print("%d) "%user_choice, end="")
-            print(item)
-            user_choice += 1
-            row_to_delete.append(item[0])
-        try:
-            user_choice = int(input("Pick a row to delete: "))
-        except ValueError:
-            print("Error: invalid type, enter an integer.")
-            return
-        if user_choice < 1 or user_choice > len(row_to_delete):
-            print("Error: Index out of range.")
-            return
         try:
             cursor.execute("delete from Office where Office_Name =(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     elif table == "Rental_Agreement":
-        user_choice = 1
-        row_to_delete = []
-        for item in cursor.execute("select * from Rental_Agreement"):
-            print("%d) "%user_choice, end="")
-            print(item)
-            user_choice += 1
-            row_to_delete.append(item[0])
-        try:
-            user_choice = int(input("Pick a row to delete: "))
-        except ValueError:
-            print("Error: invalid type, enter an integer.")
-            return
-        if user_choice < 1 or user_choice > len(row_to_delete):
-            print("Error: Index out of range.")
-            return
         try:
             cursor.execute("delete from Rental_Agreement where Agreement_ID =(?)", [row_to_delete[user_choice - 1]])
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     elif table == "Agrees":
-        user_choice = 1
-        row_to_delete = []
-        for item in cursor.execute("select * from Agrees"):
-            print("%d) "%user_choice, end="")
-            print(item)
-            user_choice += 1
-            row_to_delete.append([item[0], item[1]])
-        try:
-            user_choice = int(input("Pick a row to delete: "))
-        except ValueError:
-            print("Error: invalid type, enter an integer.")
-            return
-        if user_choice < 1 or user_choice > len(row_to_delete):
-            print("Error: Index out of range.")
-            return
         try:
             cursor.execute("delete from Agrees where Agreement_ID =(?) and Agency_ID = (?)", 
                 [row_to_delete[user_choice - 1][0], row_to_delete[user_choice - 1][1]])
