@@ -205,6 +205,9 @@ def sql_statement(statement, cursor):
     except sqlite3.Error as e:
         print("Error occurred: ", e)
 
+# main()      executes functions and logic in main program
+# Parameters: None
+# Return:     None
 if __name__ == "__main__":
     connection = sqlite3.connect("SOAP.db")
     connection.execute("PRAGMA foreign_keys = ON")
