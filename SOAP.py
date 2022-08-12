@@ -58,18 +58,22 @@ def convert_to_date(dt_str):
 # Return:               None
 def insert(table, cursor):
     if table == "Agency":
-         agency_id   = int(input("Enter the agency id: "))
-         agency_name = input("Enter the agency name: ")
-         street = input("Enter the street address of the agency: ") 
-         city = input("Enter the city of the agency: ")
-         state  = input("Enter the State of the agency: ")
-         phone_number= input("Enter the Phone number of the agency: ")
-         # This is the tuple that is going to be inserted into the table
-         row_to_insert = (agency_id, agency_name, street, city, state, phone_number)
-         try:
-            cursor.execute("insert into Agency values (?,?,?,?,?,?)", row_to_insert)
-         except sqlite3.Error as e:
-            print("Error occurred: ", e)
+        try:
+            agency_id   = int(input("Enter the agency id: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
+        agency_name = input("Enter the agency name: ")
+        street = input("Enter the street address of the agency: ") 
+        city = input("Enter the city of the agency: ")
+        state  = input("Enter the State of the agency: ")
+        phone_number= input("Enter the Phone number of the agency: ")
+        # This is the tuple that is going to be inserted into the table
+        row_to_insert = (agency_id, agency_name, street, city, state, phone_number)
+        try:
+           cursor.execute("insert into Agency values (?,?,?,?,?,?)", row_to_insert)
+        except sqlite3.Error as e:
+           print("Error occurred: ", e)
     if table == "Office":
         office_name = input("Enter the name of the office: ")
         city = input("Enter the city of the office: ")
@@ -80,8 +84,12 @@ def insert(table, cursor):
             cursor.execute("insert into Office values(?,?,?,?)", row_to_insert)
         except sqlite3.Error as e:
             print("Error occurred: ", e)
-    if table == "Rental Agreement":
-        agreement_id = int(input("Enter agreement id: "))
+    if table == "Rental_Agreement":
+        try:
+            agreement_id = int(input("Enter agreement id: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
         office_name = input("Enter the office name: ")
         rent_amount = float(input("Enter rent amount: "))
         begin_date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
@@ -92,9 +100,17 @@ def insert(table, cursor):
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     if table == "Agrees":
-        agreement_id = int(input("Enter agreement id: "))
-        agency_id = int(input("Enter the agency id: "))
+        try:
+            agreement_id = int(input("Enter agreement id: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
+        try:
+            agency_id = int(input("Enter the agency id: "))
         row_to_insert = (agreement_id, agency_id)
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
         try:
             cursor.execute("insert into Agrees values(?,?)", row_to_insert)
         except sqlite3.Error as e:
