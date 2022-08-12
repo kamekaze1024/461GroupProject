@@ -147,7 +147,10 @@ def delete(table, cursor):
         print("%d) "%user_choice, end="")
         print(item)
         user_choice += 1
-        row_to_delete.append([item[0], item[1]])
+        if table == "Agrees":
+            row_to_delete.append([item[0], item[1]])
+        else:
+            row_to_delete.append(item[0])
     try:
         user_choice = int(input("Pick a row to delete: "))
     except ValueError:
