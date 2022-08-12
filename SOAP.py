@@ -107,10 +107,10 @@ def insert(table, cursor):
             return
         try:
             agency_id = int(input("Enter the agency id: "))
-        row_to_insert = (agreement_id, agency_id)
         except ValueError:
             print("Error: invalid type, enter an integer.")
             return
+        row_to_insert = (agreement_id, agency_id)
         try:
             cursor.execute("insert into Agrees values(?,?)", row_to_insert)
         except sqlite3.Error as e:
