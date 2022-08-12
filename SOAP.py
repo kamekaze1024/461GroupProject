@@ -49,6 +49,7 @@ def menu_for_tables():
 # Parameters: dt_str:     a date stored as a string
 # Return:                 a date formatted as a date
 def convert_to_date(dt_str):
+    date = None
     try:
         date = datetime.strptime(str(dt_str), "%Y-%m-%d").date()
     except ValueError:
