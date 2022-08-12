@@ -144,7 +144,11 @@ def delete(table, cursor):
             print(item)
             user_choice += 1
             row_to_delete.append(item[0])
-        user_choice = int(input("Pick a row to delete: "))
+        try:
+            user_choice = int(input("Pick a row to delete: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
         if user_choice < 1 or user_choice > len(row_to_delete):
             print("Error: Index out of range.")
             return
@@ -160,7 +164,11 @@ def delete(table, cursor):
             print(item)
             user_choice += 1
             row_to_delete.append(item[0])
-        user_choice = int(input("Pick a row to delete: "))
+        try:
+            user_choice = int(input("Pick a row to delete: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
         if user_choice < 1 or user_choice > len(row_to_delete):
             print("Error: Index out of range.")
             return
@@ -176,7 +184,11 @@ def delete(table, cursor):
             print(item)
             user_choice += 1
             row_to_delete.append(item[0])
-        user_choice = int(input("Pick a row to delete: "))
+        try:
+            user_choice = int(input("Pick a row to delete: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
         if user_choice < 1 or user_choice > len(row_to_delete):
             print("Error: Index out of range.")
             return
@@ -192,7 +204,11 @@ def delete(table, cursor):
             print(item)
             user_choice += 1
             row_to_delete.append([item[0], item[1]])
-        user_choice = int(input("Pick a row to delete: "))
+        try:
+            user_choice = int(input("Pick a row to delete: "))
+        except ValueError:
+            print("Error: invalid type, enter an integer.")
+            return
         if user_choice < 1 or user_choice > len(row_to_delete):
             print("Error: Index out of range.")
             return
