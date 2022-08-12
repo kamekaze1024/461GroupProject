@@ -49,7 +49,10 @@ def menu_for_tables():
 # Parameters: dt_str:     a date stored as a string
 # Return:                 a date formatted as a date
 def convert_to_date(dt_str):
-    date = datetime.strptime(str(dt_str), "%Y-%m-%d").date()
+    try:
+        date = datetime.strptime(str(dt_str), "%Y-%m-%d").date()
+    except ValueError:
+        raise ValueError
     return date
 
 # insert(table, cursor) inserts into a table
@@ -91,9 +94,21 @@ def insert(table, cursor):
             print("Error: invalid type, enter an integer.")
             return
         office_name = input("Enter the office name: ")
-        rent_amount = float(input("Enter rent amount: "))
-        begin_date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
-        end_date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
+        try:
+            rent_amount = float(input("Enter rent amount: "))
+        except ValueError:
+            print("Error: invalid type, enter a decimal number.")
+            return
+        try:
+            begin_date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
+        except ValueError:
+            print("Error: invalid date format, enter a date in YYYY-MM-DD")
+            return
+        try:
+            end_date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
+        except ValueError:
+            print("Error: invalid date format, enter a date in YYYY-MM-DD")
+            return
         row_to_insert = (agreement_id, office_name, rent_amount, begin_date, end_date)
         try:
             cursor.execute("insert into Rental_Agreement values(?,?,?,?,?)", row_to_insert)
