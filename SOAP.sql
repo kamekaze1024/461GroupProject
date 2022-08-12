@@ -12,7 +12,7 @@ CREATE TABLE Office (
 	Office_Name TEXT NOT NULL,
 	City TEXT,
 	State TEXT,
-	Square_Footage INTEGER,
+	Square_Footage NUMERIC,
 	PRIMARY KEY(Office_Name)
 );
 

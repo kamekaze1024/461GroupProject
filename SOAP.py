@@ -81,7 +81,11 @@ def insert(table, cursor):
         office_name = input("Enter the name of the office: ")
         city = input("Enter the city of the office: ")
         state = input("Enter the state of the office: ")
-        square_footage = int(input("Enter the square footage of the office: "))
+        try:
+            square_footage = float(input("Enter the square footage of the office: "))
+        except ValueError:
+            print("Error: invalid type, enter a decimal number.")
+            return
         row_to_insert = (office_name, city, state, square_footage)
         try:
             cursor.execute("insert into Office values(?,?,?,?)", row_to_insert)
