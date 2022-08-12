@@ -50,12 +50,11 @@ def menu_for_tables():
 # Parameters: dt_str:     a date stored as a string
 # Return:                 a date formatted as a date
 def convert_to_date(dt_str):
-    date = None
     try:
         date = datetime.strptime(str(dt_str), "%Y-%m-%d").date()
+        return date
     except ValueError:
         raise ValueError
-    return date
 
 # insert(table, cursor) inserts into a table
 # Parameters:           table: the selected table name string
