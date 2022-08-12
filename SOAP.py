@@ -25,32 +25,26 @@ def menu_for_tables():
     print("B) Office")
     print("C) Rental_Agreement")
     print("D) Agrees")
-    ret_val = ""
     while(True):
         user_choice = input("Enter a choice: ").upper()
         if user_choice == "A":
             print("Records in the Agency table are formatted as follows:\n" +
                   "(Agency_ID, Agency_Name, Street, City, State, Phone_Number)")
-            ret_val = "Agency"
-            break
+            return "Agency"
         elif user_choice == "B":
             print("Records in the Office table are formatted as follows:\n" +
                   "(Office_Name, City, State, Square_Footage)")
-            ret_val = "Office"
-            break
+            return "Office"
         elif user_choice == "C":
             print("Records in the Rental_Agreement table are formatted as follows:\n" +
                   "(Agreement_ID, Office_Name, Rent_Amount, Begin_Date, End_Date)")
-            ret_val = "Rental_Agreement"
-            break
+            return "Rental_Agreement"
         elif user_choice == "D":
             print("Records in the Agrees table are formatted as follows:\n" +
                   "(Agreement_ID, Agency_ID)")
-            ret_val = "Agrees"
-            break
+            return "Agrees"
         else:
             print("Invalid selection, please enter A, B, C, or D.")
-    return ret_val
     
 # convert_to_date(dt_str) converts a string to a date
 # Parameters: dt_str:     a date stored as a string
