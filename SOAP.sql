@@ -44,6 +44,9 @@ CREATE TABLE Agrees (
 	FOREIGN KEY(Agency_ID) REFERENCES Agency(Agency_ID)
 );
 
+--See here for GSA office names and their regions: 
+--https://www.gsa.gov/about-us/organization/office-of-the-administrator-overview
+--https://www.gsa.gov/about-us/gsa-regions
 INSERT INTO Office VALUES('New England Regional Office', 'Boston', 'MA', 10000);
 INSERT INTO Office VALUES('Northeast & Caribbean Regional Office', 'New York', 'NY', 20000);
 INSERT INTO Office VALUES('Mid-Atlantic Regional Office', 'Philadelphia', 'PA', 15000);
