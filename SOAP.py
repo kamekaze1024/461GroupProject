@@ -105,12 +105,12 @@ def insert(table, cursor):
             print("Error: invalid type, enter a decimal number.")
             return
         try:
-            begin_date = convert_to_date(input("Enter a begin date ? (in YYYY-MM-DD):  "))
+            begin_date = convert_to_date(input("Enter a begin date (in YYYY-MM-DD): "))
         except ValueError:
             print("Error: invalid date format, enter a date in YYYY-MM-DD")
             return
         try:
-            end_date = convert_to_date(input("Enter an end date ? (in YYYY-MM-DD):  "))
+            end_date = convert_to_date(input("Enter an end date (in YYYY-MM-DD): "))
         except ValueError:
             print("Error: invalid date format, enter a date in YYYY-MM-DD")
             return
@@ -142,42 +142,42 @@ def insert(table, cursor):
 # Return:               None
 def delete(table, cursor):
     user_choice = 1
-    row_to_delete = []
+    rows = []
     for item in cursor.execute("select * from " + table):
         print("%d) "%user_choice, end="")
         print(item)
         user_choice += 1
         if table == "Agrees":
-            row_to_delete.append([item[0], item[1]])
+            rows.append([item[0], item[1]])
         else:
-            row_to_delete.append(item[0])
+            rows.append(item[0])
     try:
         user_choice = int(input("Pick a row to delete: "))
     except ValueError:
         print("Error: invalid type, enter an integer.")
         return
-    if user_choice < 1 or user_choice > len(row_to_delete):
+    if user_choice < 1 or user_choice > len(rows):
         print("Error: Index out of range.")
         return
     if table == "Agency":
         try:
-            cursor.execute("delete from Agency where Agency_ID=(?)", [row_to_delete[user_choice - 1]])
+            cursor.execute("delete from Agency where Agency_ID=(?)", [rows[user_choice - 1]])
         except sqlite3.Error as e:
              print("Error occurred: ", e)           
     elif table == "Office":
         try:
-            cursor.execute("delete from Office where Office_Name =(?)", [row_to_delete[user_choice - 1]])
+            cursor.execute("delete from Office where Office_Name =(?)", [rows[user_choice - 1]])
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     elif table == "Rental_Agreement":
         try:
-            cursor.execute("delete from Rental_Agreement where Agreement_ID =(?)", [row_to_delete[user_choice - 1]])
+            cursor.execute("delete from Rental_Agreement where Agreement_ID =(?)", [rows[user_choice - 1]])
         except sqlite3.Error as e:
             print("Error occurred: ", e)
     elif table == "Agrees":
         try:
             cursor.execute("delete from Agrees where Agreement_ID =(?) and Agency_ID = (?)", 
-                [row_to_delete[user_choice - 1][0], row_to_delete[user_choice - 1][1]])
+                [rows[user_choice - 1][0], rows[user_choice - 1][1]])
         except sqlite3.Error as e:
             print("Error occurred: ", e)
 
